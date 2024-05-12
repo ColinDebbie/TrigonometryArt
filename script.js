@@ -14,7 +14,7 @@ const Curves = {
         },
         params: [3, -5, 17, 5, -3.5, 3.4, .9],   
         speed: 0.2
-        // params: [27, 291, 77, 5, 400, 512, 2239],
+       
         // speed: 0.02,
         // params: [11, 3, 17, 5, 28, 64, 9], // ball of string
         // speed: 0.1,
