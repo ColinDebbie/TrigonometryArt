@@ -12,7 +12,7 @@ const Curves = {
                     * af * ag / (af * ag + af + ag)
             ];
         },
-        params: [3, -5, 17, 5, -3.5, 3.4, .9],   // more beautiful loops!!
+        params: [3, -5, 17, 5, -3.5, 3.4, .9],   
         speed: 0.2
         // params: [27, 291, 77, 5, 400, 512, 2239],
         // speed: 0.02,
