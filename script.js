@@ -15,27 +15,6 @@ const Curves = {
         params: [3, -5, 17, 5, -3.5, 3.4, .9],   
         speed: 0.2
        
-        // speed: 0.02,
-        // params: [11, 3, 17, 5, 28, 64, 9], // ball of string
-        // speed: 0.1,
-        // params: [3, -3, 17, 5, 28, 64, 9],  // twisted oval frame
-        // speed: 0.4,
-        // params: [-5, 7, 2, -1, 2, -5, 1],    // wide bowtie
-        // speed: 0.4,
-        // params: [-2.5, 2.5, 8, -2, -28, -64, -9],   // hoop of wire
-        // speed: 0.4,
-        // params: [-2.5, 2.5, 19, -4, -28, -64, -9],   // mirror frame, woven
-        // speed: 0.4,
-        // params: [3, -3, 17, 5, 5, 64, 9],   // oval frame
-        // speed: 0.4,
-        // params: [3, -3, 17, 5, -3.5, 3.4, .9],   // beautiful loops!!
-        // speed: 0.2,
-        // params: [3, -5, 19, 5, -4.5, 2.4, .707],   // yet more beautiful loops!!
-        // speed: 0.2,
-        // params: [-2, 1.5, 5, 1.367, 2.5, -2.4, 1.707],   // beautiful loopy assymetry
-        // speed: 0.4,
-        // params: [-2.11, 1.4142, 3, 2.367, 2.5, -2.4, 1.707],   // complex ball of string
-        // speed: 0.4
     },
 
     chitonoid: {   // copy of oysteroid with different params
