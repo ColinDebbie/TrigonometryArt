@@ -1,2 +1,364 @@
+<!--
+HTML file for Trig Worms, alias Vermichrome
+©John Lynch - January-March 2024
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creating dynamic art by sending shapes around a canvas following parametric curves">
+    <meta name="author" content="John Lynch">
+    <title>Vermichrome</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <main id="main">
+
+        <nav id="nav-top">
+            <span><a href=# target="_blank" class="active">Vermichrome</a></span>
+            <span><a href="https://www.teraspora.net" target="_blank">Teraspora</a></span>
+            <span><a href="https://www.zeroundefined.net" target="_blank">Zero Undefined</a></span>
+            <span><a href="https://www.illegaloperation.net" target="_blank">Illegal Operation</a></span>
+
+        </nav>
+
+        <canvas></canvas>
+        
+        <section id="controls">
+            
+            <div id="buttons">
+                <button id="pause">Pause</button>
+                <button id="clear">Clear</button>
+                <button id="background">Background</button>
+                <button id="mirror">Unmirror</button>
+                <button id="debug">Focus Active</button>
+                <button id="save">Save</button>
+                <button id="reload">Reload</button>
+                <button id="help">Help</button>
+                <button id="github" onclick=" window.open('https://github.com/teraspora/trig_worms','_blank')">Github</button>
+            </div>
+            
+            <div id="curves">
+                <h3 id="curves-header">Curves <span id="curves-toggler">▼</span></h3>
+                
+                <fieldset id="checkbox-wrapper">
+                    <div>
+                        <input type="checkbox" name="---" checked/>
+                        <label>---</label>
+                        <span></span>
+                        <!-- More checkboxes to be added in JS, clones of the above -->
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <div id="params-wrapper">
+                <h3 id="active-curve-header">Active Curve <span id="active-curve-toggler">▼</span></h3>
+                <div id="active-curve-settings">
+                    <select id="curve-select"></select>
+
+                    <section id="details">
+                        <div class="shape-ui">shape:</div> 
+                        <select class="param" id="shape">
+                            <option value="Star">Star</option>
+                            <option value="Polygon">Polygon</option>
+                            <option value="Ring">Ring</option>
+                            <option value="Moon">Moon</option>
+                            <option value="Windmill">Windmill</option>
+                        </select>
+                        
+                        <div class="speed-ui">speed:</div> 
+                        <select class="param speed-ui" id="speed">
+                            <option value="-5">-5</option> 
+                            <option value="-4.5">-4.5</option>                            
+                            <option value="-4">-4</option>
+                            <option value="-3.5">-3.5</option>
+                            <option value="-3">-3</option>
+                            <option value="-2.5">-2.5</option>
+                            <option value="-2">-2</option>
+                            <option value="-1.5">-1.5</option>
+                            <option value="-1">-1</option>
+                            <option value="-0.5">-0.5</option>
+                            <option value="-0.4">-0.4</option>
+                            <option value="-0.3">-0.3</option>
+                            <option value="-0.2">-0.2</option>
+                            <option value="-0.15">-0.15</option>
+                            <option value="-0.1">-0.1</option>
+                            <option value="-0.08">-0.08</option>
+                            <option value="-0.06">-0.06</option>
+                            <option value="-0.05">-0.05</option>
+                            <option value="-0.04">-0.04</option>
+                            <option value="-0.02">-0.02</option>
+                            <option value="-0.01">-0.01</option>
+                            <option value="-0.008">-0.008</option>
+                            <option value="-0.005">-0.005</option>
+                            <option value="-0.002">-0.002</option>
+                            <option value="-0.001">-0.001</option>
+                            <option value="-0.0005">-0.0005</option>
+                            <option value="-0.0002">-0.0002</option>
+                            <option value="-0.0001">-0.0001</option>
+                            <option value="-0.00005">-0.00005</option>
+                            <option value="-0.00001">-0.00001</option>
+                            <option value="-0.000005">-0.000005</option>                        
+                            <option value="0.000005">0.000005</option>                        
+                            <option value="0.00001">0.00001</option>                            
+                            <option value="0.00005">0.00005</option>
+                            <option value="0.0001">0.0001</option>
+                            <option value="0.0002">0.0002</option>
+                            <option value="0.0005">0.0005</option>
+                            <option value="0.001">0.001</option>
+                            <option value="0.002">0.002</option>
+                            <option value="0.005">0.005</option>
+                            <option value="0.008">0.008</option>
+                            <option value="0.01">0.01</option>
+                            <option value="0.02">0.02</option>
+                            <option value="0.04">0.04</option>
+                            <option value="0.05">0.05</option>
+                            <option value="0.06">0.06</option>
+                            <option value="0.08">0.08</option>
+                            <option value="0.1">0.1</option>
+                            <option value="0.15">0.15</option>
+                            <option value="0.2">0.2</option>
+                            <option value="0.3">0.3</option>
+                            <option value="0.4">0.4</option>
+                            <option value="0.5">0.5</option>
+                            <option value="1">1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2">-2</option>
+                            <option value="2.5">2.5</option>
+                            <option value="3">3</option>
+                            <option value="3.5">3.5</option>
+                            <option value="4">4</option>
+                            <option value="4.5">4.5</option>
+                            <option value="5">5</option> 
+                        </select>
+                        
+                        <div class="scale-ui">scale: <output id="scale-output"></output></div> 
+                        <input type="range" min="0" max="4" step="0.1" value="1" class="param scale-ui" id="scale">
+
+                        <div class="rotation-ui">rotation:</div>
+                        <select class="param" id="rotation">
+                            <option value="-3">-3</option>
+                            <option value="-2">-2</option>
+                            <option value="-1.5">-1.5</option>
+                            <option value="-1">-1</option>
+                            <option value="-0.8">-0.8</option>
+                            <option value="-0.6">-0.6</option>
+                            <option value="-0.4">-0.4</option>
+                            <option value="-0.2">-0.2</option>
+                            <option value="0">0</option>
+                            <option value="0.2">0.2</option>
+                            <option value="0.4">0.4</option>
+                            <option value="0.6">0.6</option>
+                            <option value="0.8">0.8</option>
+                            <option value="1">1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                                            
+                        <div class="x-control-ui">x-control: <output id="x-control-output"></output></div> 
+                        <input type="range" min="-4" max="4" step="0.1" value="0" class="param x-control-ui" id="x-control">
+                        
+                        <div class="y-control-ui">y-control: <output id="y-control-output"></output></div> 
+                        <input type="range" min="-4" max="4" step="0.1" value="0" class="param y-control-ui" id="y-control">
+                        
+                        <div class="fill-ui">fill:</div> 
+                        <input type="checkbox" name="fill" class="param fill-ui" id="fill" checked/>
+                    
+                        <div class="hue-ui">hue: <output id="hue-output"></output></div> 
+                        <input type="range" min="-1" max="359" value="0" class="param hue-ui" id="hue">
+                        
+                        <div class="stroke-thickness-ui">stroke thickness: <output id="stroke-thickness-output"></output></div> 
+                        <input type="range" min="0" max="8" value="2" class="param stroke-thickness-ui" id="stroke-thickness"/>
+                                            
+                        <div class="polychrome-stroke-ui">polychrome stroke:</div> 
+                        <input type="checkbox" name="polychrome-stroke" class="param polychrome-stroke-ui" id="polychrome-stroke"/>
+                        
+                        <div class="stroke-colour-ui">stroke colour: <output id="stroke-colour-output"></output></div> 
+                        <input type="color" name="stroke-colour" class="param stroke-colour-ui" id="stroke-colour"/>
+                    
+                        <div class="polychrome-speed-ui hidden">polychrome speed: <output id="polychrome-speed-output"></output></div> 
+                        <input type="range" min="0" max="100" value="0" class="param polychrome-speed-ui hidden" id="polychrome-speed">
+                        
+                        <div class="order-ui">order:</div> 
+                        <select class="param order-ui" id="order">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        
+                        <div class="eccentricity-ui">eccentricity:</div> 
+                        <select class="param eccentricity-ui" id="eccentricity">
+                            <option value="0">0</option>
+                            <option value="0.1">0.1</option>
+                            <option value="0.2">0.2</option>
+                            <option value="0.3">0.3</option>
+                            <option value="0.4">0.4</option>
+                            <option value="0.5">0.5</option>
+                            <option value="0.6">0.6</option>
+                            <option value="0.7">0.7</option>
+                            <option value="0.8">0.8</option>
+                            <option value="0.9">0.9</option>
+                            <option value="1">1</option>
+                        </select>
+
+                        <div class="radius-ui">radius: <output id="radius-output"></output></div> 
+                        <input type="range" min="1" max="512" value="0" class="param radius-ui" id="radius">
+                        
+                        <div class="hub-ui">hub: <output id="hub-output"></output></div> 
+                        <input type="range" min="1" max="512" value="0" class="param hub-ui" id="hub">
+                        
+                        <div class="pulse-ui">pulse: <output id="pulse-output"></output></div> 
+                        <input type="range" min="0" max="3" step="0.1" value="0" class="param pulse-ui" id="pulse">
+                        
+                        <div class="wave-amp-ui">wave amplitude: <output id="wave-amp-output"></output></div> 
+                        <input type="range" min="0" max="100" step="1" value="0" class="param wave-amp-ui" id="wave-amp">
+
+                        <div class="wave-freq-ui">wave frequency: <output id="wave-freq-output"></output></div> 
+                        <input type="range" min="0" max="10" step="0.1" value="0" class="param wave-freq-ui" id="wave-freq">
+
+                        <div class="aux-ui">auxiliary curve:</div> 
+                        <select class="param" id="aux">
+                            <!-- Options - all curves - to be added in Javascript -->
+                        </select>
+                        
+                    </section>
+
+                </div>
+            </div>
+
+            <div id="function-wrapper">
+                <h3 id="function-header">Function <span id="function-toggler">►</span></h3>
+                <div id="function-settings" class="hidden">
+                    <section id="function">
+                    </section>
+
+                    <section id="params-editor">
+                        <table id="param-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>a</td>
+                                    <td><input type="number" min="-64" max="64" step="0.1"></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+
+            <div id="advanced-wrapper">
+                <h3 id="advanced-header">Advanced <span id="advanced-toggler">►</span></h3>
+                <div id="advanced-settings" class="hidden">
+                    <table id="advanced-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>shadow colour</td>
+                                <td><output></output></td>
+                                <td><input type="color" id="shadow-colour"></td>
+                            </tr>
+                            <tr>
+                                <td>global alpha</td>
+                                <td><output></output></td>
+                                <td><input type="range" min="0" max="1" step="0.01" id="global-alpha"></td>
+                            </tr>
+                            <tr>
+                                <td>shadow offset x</td>
+                                <td><output></output></td>
+                                <td><input type="range" min="-16" max="16" step="1" id="shadow-offset-x"></td>
+                            </tr>
+                            <tr>
+                                <td>shadow offset y</td>
+                                <td><output></output></td>
+                                <td><input type="range" min="-16" max="16" step="1" id="shadow-offset-y"></td>
+                            </tr>
+                            <tr>
+                                <td>shadow blur</td>
+                                <td><output></output></td>
+                                <td><input type="range" min="0" max="256" step="1" id="shadow-blur"></td>
+                            </tr>
+                            <tr>
+                                <td>global speed</td>
+                                <td><output></output></td>
+                                <td><input type="range" min="0" max="128" step="1" id="global-speed"></td>
+                            </tr>
+                            <tr>
+                                <td>global scale</td>
+                                <td><output></output></td>
+                                <td><input type="range" min="0" max="4" step="0.1" id="global-scale"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <aside id="help" hidden>
+        <h2>Vermichrome - very brief guide</h2>
+        <p>Vermichrome is a pure Javascript Web App that;s meant to be both fun and educational.</p>
+        <p>It gives you the facility to draw pretty patterns by iterating parametrically-defined 2d curves over time, with each "stroke of the pen" being a shape such as a polygon, a star or a ring.</p>
+        <p>It will start each time with three curves selected randomly from a total of about twenty currently, and randomly-deteremined shapes.   You are free to select and deselect curves as you please, by clicking the checkboxes.   Hit <strong>Clear</strong> to start afresh with your new selection.</p>
+        <p>You can control quite a few parameters, such as shape, order (number of sides or spokes), size, speed, colour, rotation etc..</p>
+        <p>Other effects like pulsing and waviness are there for you to experiment with.</p>
+        <p>To adjust the parameters for a curve, first select it from the dropdown bottom right.</p>
+        <p>Tip:  hit <strong>Pause</strong>, select your curves, adjust their parameters, then just select one of them before hitting <strong>Play</strong>.   When you are satisfied with the drawing, hit <strong>Pause</strong>, deselect the curve, select your next curve and hit <strong>Play</strong> again.   Proceeding like this you can layer patterns on top of one another.</p>
+        <p>Note:  to get changing colours, set the hue to -1.   Then you'll see the <strong>Polychrome Speed</strong> slider, which lets you control the rate of colour change.</p>
+
+        <table>
+        <tr>
+            <th>Action</th>
+            <th>Shortcut</th>
+        </tr>
+        <tr>
+            <td><pre>Clear drawing & continue</pre></td>
+            <td><code>Escape</code></td>
+        </tr>
+        <tr>
+            <td><pre>Toggle play/pause</pre></td>
+            <td><code>Space</code></td>
+        </tr>
+        <tr>
+            <td><pre>Reload</pre></td>
+            <td><code>*</code></td>
+        </tr>
+        </table>
+        <button id="hide">Hide</button>
+    </aside>
+
+    <section id="colour-picker" hidden>
+        <div>
+            <input type="color" id="head" name="canvas-background" value="#000000" />
+            <label for="canvas-background">Background</label>
+            <button id="cp-hide">Hide</button>
+        </div>
+    </section>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
