@@ -1,4 +1,20 @@
-// ooo
+// oooo
+
+
+
+
+
+
+
+
+
+
+//p 
+
+
+
+
+
 const Curves = {
 
     oysteroid: {
