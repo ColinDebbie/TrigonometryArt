@@ -1,20 +1,4 @@
-// oooo
-
-
-
-
-
-
-
-
-
-
-//p kkkkkkhsdfgdsfgsa
-
-
-
-
-
+// Final
 const Curves = {
 
     oysteroid: {
