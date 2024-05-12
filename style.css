@@ -1,0 +1,354 @@
+/* 
+// Main CSS file for Trig Worms, alias Vermichrome
+// ©John Lynch - January-March 2024
+*/
+
+html, body, * {
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+    border-radius: 5px;
+    --highlight-col: #ffc000;
+    --plain-text-col: #ffe0b1;
+    --border-grey: #7a7265;
+    --contrast-col: #00ffbf;
+    accent-color: var(--contrast-col);
+}
+
+a {
+    text-decoration: none;
+    background-color: inherit;
+}
+
+main#main {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 1fr 24fr;
+    width: 98vw;
+    height: 98vh;
+    gap: 0.2vw;
+    justify-items: stretch;
+    align-items: stretch;
+    margin: 1vw auto;
+}
+
+nav#nav-top {
+    color: var(--plain-text-col);
+    grid-column: 1 / -1;
+    margin: 2vh 1vw 0 1vw;
+    justify-self: left;
+}
+
+nav#nav-top span{
+    display: inline-block;
+    margin: 0 1vw 0 1vw;
+    background: radial-gradient(#3ad1ff, #ff7297);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-out;
+}
+
+nav#nav-top span:hover {
+    transform: scale(1.1);
+}
+
+nav#nav-top span a.active{
+    text-decoration-line: underline;
+    text-decoration-color: var(--contrast-col);
+}
+
+canvas, #controls, #curves, #params-wrapper, #buttons, #advanced-wrapper, #function-wrapper {
+    border: 1px ridge var(--border-grey);
+    margin: 0.5vw;
+    background-color: #000000;
+}
+
+canvas {
+    background-color: #111111;
+}
+
+#controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: min-content;
+    align-content: stretch;
+    color: var(--plain-text-col);
+    text-transform: capitalize;
+    overflow-y: auto;
+}
+
+#controls > h1 {
+    font-size: 1vw;
+    margin: 0 auto;
+}
+
+input[type=checkbox].curve-check {
+    padding-top: 0.5vh;
+}
+
+#buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 0.3vw;
+    padding: 0.5vw;
+
+}
+
+#buttons>button {
+    font-size: 0.8vw;
+    font-weight: bold;
+    height: 4vh;
+}
+
+#buttons>button#pause {
+    background-color: #0df;
+}
+
+#buttons>button#clear {
+    background-color: #ffae00;
+}
+
+#buttons>button#background {
+    background-color: #ff4800;
+}
+
+#buttons>button#mirror {
+    background-color: #d8bc97;
+}
+
+#buttons>button#debug {
+    background-color: #0084ff;
+}
+
+#buttons>button#save {
+    background-color: #ff80d9;
+}
+
+#buttons>button#reload {
+    background-color: #a75aff;
+}
+
+#buttons>button#help {
+    background-color: #00ff88;
+}
+
+#buttons>button#github {
+    background-color: #6e7681;
+}
+
+#buttons>button:hover {
+    transform: scale(1.04);
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    position: relative;
+    width: 2em;
+    height: 2em;
+    border: 1px solid var(--border-grey);
+    color: var(--highlight-col);
+  }
+  
+input[type="checkbox"]::before {
+    content: "☀";
+    position: absolute;
+    font-size: 1.2em;
+    right: 5px;
+    top: 2px;
+    visibility: hidden;
+}
+
+input[type="checkbox"]:checked::before {
+    visibility: visible;
+}
+
+input[type="checkbox"]:disabled {
+    border-color: #000;
+    color: gray;
+}
+
+input[type="range"]:hover {
+    cursor: grab;
+}
+
+output {
+    text-transform: none;
+}
+
+h3#curves-header, h3#active-curve-header, h3#advanced-header, h3#function-header {
+    padding: 0.3vw;
+    font-size: 1vw;
+    font-weight: normal;
+    font-variant: petite-caps;
+    text-align: center;
+}
+
+#curves-toggler, #active-curve-toggler, #advanced-toggler, #function-toggler {
+    cursor: pointer;
+    font-size: 1em;
+}
+
+fieldset {
+    display: grid;
+    border: none;
+    padding: 0.4vw;
+}
+
+label {
+    display: inline-block;
+    color: rgb(0, 255, 98);
+}
+
+label:has(+input:checked) {
+    color: var(--clr-selected);
+}
+
+select, select > option {
+    font-size: 1vw;
+    color: #0df;
+    padding-left: 1vw;
+    margin-left: 1vw;
+    margin-top: 1vh;
+    cursor: pointer;
+}
+
+#details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#params-editor {
+    justify-content: center;
+    margin: 1vh auto;
+}
+
+#params-wrapper {
+    display: grid;
+    justify-content: center;
+}
+
+table#param-table {
+    border: 1px solid #222;
+    padding: 1vw;
+    text-transform: none;
+}
+
+table#param-table th {
+    color: var(--highlight-col);
+}
+
+table#param-table tr {
+    color: var(--contrast-col);
+}
+
+table input {
+    color: var(--plain-text-col);
+    font-size: 1vw;
+    padding: 0.3vw;
+}
+
+section#details, section#details > p {
+    color: var(--plain-text-col);
+    padding: 0.5vw;
+    font-size: 0.7vw;
+}
+
+section#details .param {
+    border: 1px solid var(--border-grey);
+    padding: 0.1vw;
+    margin: 0.1vw;
+    color: var(--contrast-col);
+    font-size: 0.5vw;
+}
+
+section#details input, section#details .param {
+    font-size: 0.7vw;
+}
+
+section#function {
+    border-top: 1px solid var(--border-grey);
+    border-bottom: 1px solid var(--border-grey);
+    border-radius: 0;
+    padding: 0.5vw;
+    margin: 0.2vw;
+    font-size: 0.7vw;
+    text-transform: none;
+    color: var(--contrast-col);
+}
+
+section#function h3 {
+    color: var(--plain-text-col);
+    text-decoration: underline;
+    padding-bottom: 1vh;
+}
+
+section#function pre {
+    overflow-x: auto;
+    padding-bottom: 2vh;
+}
+
+#advanced-wrapper, #advanced-wrapper td {
+    font-size: 0.7vw;
+    padding: 0.2vw;
+}
+
+aside#help {
+    position: fixed;
+    background-color: #222;
+    color: var(--plain-text-col);
+    border: 1px solid #f04;
+    top: 4vh;
+    left: 40vw;
+    padding: 1vw;
+    margin: 5px;
+}
+
+aside#help * {
+    background-color: #222;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1vw;
+}
+
+aside#help button#hide {
+    background-color: var(--highlight-col);
+    color: #000;
+    width: 3vw;
+    height: 3vh;
+    margin-top: 1vh;
+    font-size: 1vw;
+}
+
+aside#help table {
+    padding: 1vw;;
+}
+
+section#colour-picker {
+    background-color: var(--plain-text-col);
+    border: var(--contrast-col);
+    position: fixed;
+    height: 12vh;
+    padding: 1vw;
+    margin: 5px;
+    font-size: 0.8vh;
+}
+
+section#colour-picker button#cp-hide {
+    background-color: var(--highlight-col);
+    width: 2vw;
+    height: 2vh;
+    margin-top: 0.5vh;
+}
+
+.hidden {
+    display: none;
+}
+
+.emphasised {
+    text-decoration: underline;
+    transform: scale(1.1);
+}
