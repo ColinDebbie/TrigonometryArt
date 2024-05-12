@@ -1,23 +1,3 @@
-// Main Javascript file for Trig Worms, alias Vermichrome (must think of a better name!)
-// ©John Lynch - January-March 2024
-// Pushing to https://teraspora.github.io/trig_worms/ - this will always be the latest version
-// Feb. 2024 - once ok at github.io, pushing to https://www.zeroundefined.net/vermichrome/
-
-// First we define our curves. Just add a function to this object, and it will work,
-// provided it returns a two-element array [x, y] in the range [-1 .. 1].
-// Next, we define Scene class, and a child Scene2d class, then a CurveScene class which inherits from Scene2d.
-// This class encapsulates the whole kaboodle.
-// We instantiate this class and call its render() method, which then calls update(),
-// which calls requestAnimationLoop(this.update.bind(this))).
-// The CurveScene instance is the king.   It has curves, and each curve has a shape.
-// Shapes inherit from a base class Shape, and include Polygon, Star, Ring etc..
-// The user can vary a rake of parameters determining the curve, the shape, etc..
-// The scene can have many curves, but a curve can have only one shape at a given time.
-// The user can determine whether to fill/stroke the shapes, the radius, hue, stroke colour, rotation, waviness etc..
-// Further documentation on Github.
-
-// Some curves have their proper names.
-// Others are ones I have invented or adapted, so I have just made up names for them.
 
 const Curves = {
 
